@@ -1,14 +1,25 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '@/components/providers/Theme';
 import { Layout } from '@/components/Layout';
 import DashboardPage from './dashboard/page';
 import ExpensesPage from './expenses/page';
 import InsightsPage from './insights/page';
 import BudgetPage from './budget/page';
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 export default function App() {
+  const { data: session, status } = useSession()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login")
+    }
+  }, [status, router])
+
   const [expenses, setExpenses] = useState([]);
   const [currentPage, setCurrentPage] = useState('dashboard');
   const { isDarkMode, setIsDarkMode } = useTheme();
@@ -31,6 +42,10 @@ export default function App() {
         return <DashboardPage expenses={expenses} />;
     }
   };
+
+  if(status === "loading") {
+    return <div>Loading...</div>
+  }
 
   return (
     <Layout 
