@@ -1,9 +1,10 @@
 import React from "react";
 
-export const Select = ({ children, value, onChange, className = "" }) => {
+export const Select = ({ children, value, onChange, name, className = "" }) => {
   return (
     <select
       value={value}
+      name={name}
       onChange={(e) => onChange(e.target.value)}
       className={`w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${className}`}
     >

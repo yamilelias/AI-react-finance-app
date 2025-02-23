@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from "recharts";
 import { PieChart } from "lucide-react";
 
-const Insights = ({ expenses }) => {
+export const Insights = ({ expenses }) => {
   const categoryTotals = expenses.reduce((acc, expense) => {
     acc[expense.category] = (acc[expense.category] || 0) + Number(expense.amount);
     return acc;
@@ -37,5 +37,3 @@ const Insights = ({ expenses }) => {
     </Card>
   );
 };
-
-export default Insights;

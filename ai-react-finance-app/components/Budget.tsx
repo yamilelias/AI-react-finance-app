@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Progress } from "@/components/ui/Progress";
+import { Alert, AlertDescription } from "@/components/ui/Alert";
 import { Wallet } from "lucide-react";
 
-const Budget = ({ expenses }) => {
+export const Budget = ({ expenses }) => {
   const [budgets, setBudgets] = useState({
     Food: 500,
     Rent: 1500,
@@ -52,5 +52,3 @@ const Budget = ({ expenses }) => {
     </Card>
   );
 };
-
-export default Budget;
