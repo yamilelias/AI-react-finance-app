@@ -18,12 +18,20 @@ export const authOptions = {
     EmailProvider({
       server: {
         send: async (message) => {
-          await resend.emails.send({
+          console.log("Sending email:", message);
+
+          const { data, error } = await resend.emails.send({
             from: "no-reply@finance.prograpp.dev",
             to: message.to,
             subject: message.subject,
             html: message.html,
           });
+
+          if (error) {
+            console.error("Error sending email:", error);
+          } else {
+            console.log("Email sent successfully:", data);
+          }
         },
       },
       from: "no-reply@finance.prograpp.dev",
