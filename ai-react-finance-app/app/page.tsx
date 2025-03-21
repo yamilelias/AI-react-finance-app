@@ -16,7 +16,7 @@ export default function App() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/login")
+      router.push("/auth/login")
     }
   }, [status, router])
 
