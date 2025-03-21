@@ -4,7 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { Budget } from "@/components/Budget";
 import { Insights } from "@/components/Insights";
 
-export default function DashboardPage({ expenses }) {
+export default function DashboardPage({ expenses = [] }) {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Dashboard</h1>

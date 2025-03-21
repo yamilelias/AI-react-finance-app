@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 
-export default function ExpensesPage({ expenses, onAddExpense }) {
+export default function ExpensesPage({ expenses = [], onAddExpense }) {
   const [newExpense, setNewExpense] = useState({
     description: '',
     amount: '',
@@ -99,7 +99,7 @@ export default function ExpensesPage({ expenses, onAddExpense }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {expenses.map((expense) => (
+              {expenses?.map((expense) => (
                 <TableRow key={expense.id}>
                   <TableCell>{new Date(expense.date).toLocaleDateString()}</TableCell>
                   <TableCell>{expense.description}</TableCell>

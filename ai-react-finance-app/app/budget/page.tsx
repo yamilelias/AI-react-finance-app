@@ -14,7 +14,12 @@ const DEFAULT_BUDGETS = {
   other: 300
 };
 
-export default function BudgetPage({ expenses }) {
+type Expense = {
+  category: string;
+  amount: number;
+};
+
+export default function BudgetPage({ expenses = [] }: { expenses?: Expense[] }) {
   const [budgets, setBudgets] = useState(DEFAULT_BUDGETS);
   const [editMode, setEditMode] = useState(false);
   const [tempBudgets, setTempBudgets] = useState(DEFAULT_BUDGETS);
@@ -114,7 +119,7 @@ export default function BudgetPage({ expenses }) {
             <div>
               <p className="text-sm text-gray-500">Total Spent</p>
               <p className="text-2xl font-bold">
-                ${Object.values(categorySpending).reduce((a, b) => a + b, 0).toFixed(2)}
+                ${(Object.values(categorySpending || {}) as number[]).reduce((a, b) => a + b, 0).toFixed(2)}
               </p>
             </div>
           </div>
