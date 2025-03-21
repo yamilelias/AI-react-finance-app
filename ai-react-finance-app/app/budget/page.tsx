@@ -20,7 +20,7 @@ export default function BudgetPage({ expenses }) {
   const [tempBudgets, setTempBudgets] = useState(DEFAULT_BUDGETS);
 
   // Calculate spending by category
-  const categorySpending = expenses.reduce((acc, expense) => {
+  const categorySpending = expenses?.reduce((acc, expense) => {
     acc[expense.category] = (acc[expense.category] || 0) + expense.amount;
     return acc;
   }, {});
