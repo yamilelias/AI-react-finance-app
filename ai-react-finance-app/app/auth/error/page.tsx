@@ -2,8 +2,10 @@
 
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
-export default function AuthError() {
+// Client component that uses search params
+function ErrorMessageContent() {
     const searchParams = useSearchParams()
     const error = searchParams.get('error')
 
@@ -16,6 +18,10 @@ export default function AuthError() {
 
     const errorMessage = error ? errorMessages[error] ?? errorMessages.Default : errorMessages.Default
 
+    return <p className="mt-2 text-sm text-gray-600">{errorMessage}</p>
+}
+
+export default function AuthError() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
             <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
@@ -23,10 +29,10 @@ export default function AuthError() {
                     <h2 className="mt-6 text-3xl font-bold text-gray-900">
                         Authentication Error
                     </h2>
-                    <p className="mt-2 text-sm text-gray-600">
-                        {errorMessage}
-                    </p>
                 </div>
+                <Suspense fallback={<p>Loading error message...</p>}>
+                    <ErrorMessageContent />
+                </Suspense>   
                 <div className="mt-8 text-center">
                     <Link
                         href="/auth/login"
